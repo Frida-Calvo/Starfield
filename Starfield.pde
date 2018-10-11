@@ -9,7 +9,23 @@ void draw()
 }
 class NormalParticle
 {
-	//your code here
+	double myX,myY,myAngles,mySpeed;
+	int myColor;
+	NormalParticle()
+	{
+		myX= ;
+		myY= ;
+		myColor= ;
+		myAngles= ;
+		mySpeed= ;
+	}
+
+	void move()
+	{
+		myX= myX + Math.cos(myAngle)*mySpeed;
+	}
+
+
 }
 interface Particle
 {
