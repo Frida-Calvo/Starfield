@@ -1,39 +1,79 @@
-//your code here
+Particle Frida[];
 void setup()
 {
-	//your code here
+	size(500, 500);
+	Frida = new Particle[2];
+	for(int i=0; i<Frida.length; i++)
+	{
+		Frida[i]=new NormalParticle();
+	}
+	Frida[0]= new OddballParticle();
 }
 void draw()
 {
-	//your code here
+	for(int i=0; i<Frida.length; i++)
+	{
+		Frida[i].show();
+		Frida[i].move();
+	}
+
 }
-class NormalParticle
+class NormalParticle implements Particle
 {
-	double myX,myY,myAngles,mySpeed;
+	double myX,myY,myAngle,mySpeed;
 	int myColor;
 	NormalParticle()
 	{
-		myX= ;
-		myY= ;
-		myColor= ;
-		myAngles= ;
-		mySpeed= ;
+		myX= 250.0;
+		myY= 250.0;
+		myColor= color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+		myAngle= (Math.random()*2.0*Math.PI);
+		mySpeed= (Math.random()*10.0);
 	}
 
-	void move()
+	public void move()
 	{
 		myX= myX + Math.cos(myAngle)*mySpeed;
+		myY= myY + Math.sin(myAngle)*mySpeed;
+	}
+	public void show()
+	{
+		fill(myColor);
+		ellipse((float)myX, (float)myY, 10, 10);
 	}
 
 
 }
 interface Particle
 {
-	//your code here
+	public void show();
+  	public void move();
 }
-class OddballParticle //uses an interface
+class OddballParticle implements Particle//uses an interface
 {
-	//your code here
+	double myX,myY,myAngle,mySpeed;
+	
+	OddballParticle()
+	{
+		myX= 250;
+		myY= 250;
+		myAngle= 20*2.0*Math.PI;
+		mySpeed= 20.5;
+		
+	}
+	public void move()
+	{
+		myX= myX + Math.cos(myAngle)*mySpeed;
+		myY= myY + Math.sin(myAngle)*mySpeed;
+	}
+
+		public void show()
+	{
+		fill(112, 107, 158);//pastel purple
+		ellipse((float)myX, (float)myY, 15, 5);
+		fill(179, 229, 252);//baby blue
+		ellipse((float)myX+8, (float)myY+5, 5, 5);
+	}
 }
 class JumboParticle //uses inheritance
 {
